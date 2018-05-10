@@ -1,5 +1,10 @@
+*.cfg
+*.PAK
 *.dat
 *.
 *.lno
 *.lnk
+*.sublime-project
+*.sublime-workspace
 conhistory.txt
+fteqcc.txt

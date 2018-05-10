@@ -1,0 +1,13 @@
+../../csprogs.dat
+
+csqc.qc
+g_defs.qc
+2d.qc
+init.qc
+input.qc
+getStats.qc
+drawGUI.qc
+render.qc
+widgets.qc
+inventory.qc
+events.qc
