@@ -2,9 +2,8 @@
 
 void useItem(entity item)
 {	
-	print(sprintf("client remove entnum: %f \n", item.id));
-	sendevent("useItem", "f", item.id);
 	//from server, call items .use(), and send back "remove item" event if nothing failed
+	sendevent("useItem", "f", item.id);
 }
 
 void equipInventory(entity ent)
@@ -96,7 +95,6 @@ float getHoverSlot()
 	{
 		vector cell = pointToGridCell(mpos, GUI_INVENTORY, inventorySize);
 		float idx = cellToIndex(cell, inventorySize_x);
-		print(sprintf("slotnum: %f\n", idx));
 
 		return idx;
 	}
@@ -160,7 +158,6 @@ void itemDrop()
 			return;
 		}
 
-		print(sprintf("Client: made it %s\n", ent.img));
 		//drop item into emptly slot
 		removeInventory(ent.id);
 		inventory[getHoverSlot()] = ent;

@@ -12,29 +12,30 @@
 
 	send message to server when removed from inventory	-done
 	setup debug key in client to remove item from inventory	-done
-
 	setup clientstat for inventory capacity-done
-		
 	setup open/close inventory button	-done
-
 	setup inHand entity variable(dragEnt) -done
-	
 	setup startDrag and endDrag events - done
-
 	add ondrop handler to inventory cells - done
-
 	check for outside GUI drops, and drop anything inHand if dropped outside GUI area - done
-
 	Send useItem message to server on rightclick over item in inventory cell
 
 
 		TODO: 
 
-	//make windows draggable
-
-
+	//snc inventory on save/load
+		//when an item is spawned on the client, send back a message to populate entitys slotnum on the server
+		//on player spawn clientside entities wont exist, so just run through all the server inventory items
+			//spawn them clientside and add them to inventory[item.slotnum]	
 
 	//add hover stats for trace_ent in csqc, at least the name of the item
+
+	//make windows draggable
+
+	//populate .use fields for items
+
+
+
 
 	//add a bit of speed to the item drop when dragging from inventory,
 		base the speed on how fast you moved from clickpoint to releasepoint
@@ -62,13 +63,6 @@ void printInventory(entity player)
 	for(entity e = player.inventory; e != world; e = e.next)
 		sprint(player, strcat("inv: ", e.classname, "\n"));
 }
-
-/*
-	IMPORTANT NOTE!!!!!
-		items arent removed when you pick them up. 
-		so calling add inventory to an item you picked up, then calling it again near the same space
-		will cause that item to be its own next, causing an infinite loop.
-		so you MUST REMOVE ITEMS when you pick them up, and SPAWN THEM AGAIN when you drop them
 
 */
 
@@ -176,7 +170,7 @@ entity getClosestEntity(vector pos)
 		}
 	}
 
-	sprint(self, strcat("item: ", closest.classname, ", dist: ", ftos(dist), "\n"));
+//	sprint(self, strcat("item: ", closest.classname, ", dist: ", ftos(dist), "\n"));
 	return closest;
 }
 
@@ -190,8 +184,9 @@ void pickupItem(vector pos)
 
 	entity e = getClosestEntity(pos);
 
-	if(e == world)
+	if(e == world || (!(e.flags & FL_ITEM)))
 		return;
+
 
 	e.model = string_null;
 	e.solid = SOLID_NOT;

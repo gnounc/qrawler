@@ -7,8 +7,6 @@ void removeInventory(entity e);
 
 void Cmd_useItem_f(float ent)
 {
-	sprint(self, strcat("CAUGHT! ", ftos(ent), "\n"));
-
 	entity e = edict_num(ent);
 
 	if(e.use ==  __NULL__)

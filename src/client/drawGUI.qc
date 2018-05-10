@@ -5,9 +5,10 @@ void drawInventory()
 {
 	drawpic(GUI_INVENTORY.pos, "/gfx/bag", GUI_INVENTORY.size, '1 1 1', 1, 0);
 
+	vector p;
 	vector offs = '18 13';
-	vector padding = '13 13';
-	vector v_pos = GUI_INVENTORY.pos;
+	vector padding = '10 10';
+	vector v_pos = GUI_INVENTORY.pos + offs;
 
 	float idx = 0;
 	for(float y = 0; y < 4; y++)
@@ -15,8 +16,17 @@ void drawInventory()
 		for(float x = 0; x < 4; x++, idx++)
 		{
 			entity e = inventory[idx];
-			if(e != world)
-				drawpic([v_pos_x + offs_x + x*(itemPicSize_x + padding_x), v_pos_y + offs_y + y*(itemPicSize_y + padding_y)], e.img, itemPicSize, '1 1 1', dragEnt == e ? 0.6 : 1, 0);
+
+			p_x = v_pos_x + x*(itemPicSize_x + padding_x); 
+			p_y = v_pos_y + y*(itemPicSize_y + padding_y);
+
+			if(idx >= capacity)
+				drawpic(p, "gfx/blocked", itemPicSize, '1 1 1', 1, 0);
+
+			if(e == world)
+				continue;
+
+			drawpic(p, e.img , itemPicSize, '1 1 1', dragEnt == e ? 0.6 : 1, 0);
 		}
 	}
 }

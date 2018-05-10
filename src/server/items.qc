@@ -786,7 +786,7 @@ void shells_use()
 	if(self.owner == world)
 		return;
 
-	sprint(self.owner, "PAYNUS\n");
+	sprint(self.owner, "reload code goes here\n");
 }
 
 void() item_shells =

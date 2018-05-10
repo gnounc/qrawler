@@ -355,7 +355,7 @@ void() worldspawn =
 
 
 	//gnounc
-	clientstat(33, AS_FLOAT_TRUNCATED, capacity);
+	clientstat(36, AS_FLOAT_TRUNCATED, capacity);
 
 
 };
