@@ -117,6 +117,12 @@ entity hoverEnt()
 	return world;
 }
 
+void updateSlot(entity item, float slot)
+{
+	inventory[slot] = item;	//update inventory in client
+	sendevent("updateSlot", "ff", item.id, slot);	//let server know
+}
+
 //TODO!!!!!!!!! cancel action if item is dropped over an inventory slot beyond our player.capacity
 	// draw blocked tile runes for inventory slots beyond player.capacity
 void itemDrop()
@@ -152,15 +158,15 @@ void itemDrop()
 			removeInventory(ent.id);
 			removeInventory(invItem.id);
 
-			inventory[itemSlot] = ent;
-			inventory[dragSlot] = invItem;
+			updateSlot(ent, itemSlot);
+			updateSlot(invItem, dragSlot);
 
 			return;
 		}
 
 		//drop item into emptly slot
 		removeInventory(ent.id);
-		inventory[getHoverSlot()] = ent;
+		updateSlot(ent, getHoverSlot());
 	}
 }			
 

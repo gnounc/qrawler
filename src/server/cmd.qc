@@ -4,6 +4,11 @@
 void PlaceItem();
 void sendRemoveToClient(entity player, entity e);
 void removeInventory(entity e);
+void Cmd_updateSlot_ff(float ent, float slot)
+{
+	entity e = edict_num(ent);
+	e.slotnum = slot;	
+}
 
 void Cmd_useItem_f(float ent)
 {

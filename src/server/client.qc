@@ -76,6 +76,9 @@ void() SetChangeParms =
 	parm7 = self.ammo_cells;
 	parm8 = self.weapon;
 	parm9 = self.armortype * 100;
+
+	parm10 = self.quantity;
+	parm11 = self.capacity; 
 };
 
 void() SetNewParms =
@@ -89,6 +92,9 @@ void() SetNewParms =
 	parm7 = 0;
 	parm8 = 1;
 	parm9 = 0;
+
+	parm10 = 0;
+	parm11 = 5;
 };
 
 void() DecodeLevelParms =
@@ -111,8 +117,8 @@ void() DecodeLevelParms =
 
 	//gnounc
 	self.inventory = spawn();
-	self.quantity = 0;
-	self.capacity = 3;
+	self.quantity = parm10;
+	self.capacity = parm11;
 };
 
 /*============
@@ -441,10 +447,10 @@ Returns the entity to spawn at
 ============*/
 entity() SelectSpawnPoint =
 {
-	local   entity spot, thing;
+	local   entity 	spot, 	thing;
 	local   float   numspots, totalspots;
 	local   float   pcount;
-	local entity spots;
+	local 	entity 	spots;
 
 	numspots = 0;
 	totalspots = 0;
@@ -550,7 +556,6 @@ called each time a player is spawned
 void() DecodeLevelParms;
 void() PlayerDie;
 
-
 void() PutClientInServer =
 {
 	local	entity spot;
@@ -612,11 +617,6 @@ void() PutClientInServer =
 	spawn_tdeath (self.origin, self);
 	
 	stuffcmd(self, "-attack\n");            // Supa, prevent shooting after respawning in MP
-	
-//	centerprint(self, getMapname(mapname));	//gnounc --thought it would be fun. I was at odds about adding an unexpected feature. I may remove it later
-	//BAM removed it later. --gnounc
-
-
 };
 
 

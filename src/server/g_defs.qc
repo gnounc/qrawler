@@ -8,6 +8,8 @@ string(string s1, optional string s2, optional string s3, optional string s4, op
 .float quantity;
 .float capacity;
 .string img;
+.float slotnum;	//inventory items, for client/server syncing
+.string desc;
 
 void(vector where, float set) multicast = #82; /*const float SVC_CGAMEPACKET = 83;	/* Direct ssqc->csqc message. Must only be multicast. The data triggers a CSQC_Parse_Event call in the csqc for the csqc to read the contents. The server *may* insert length information for clients connected via proxies which are not able to cope with custom csqc payloads. This should only ever be used in conjunction with the MSG_MULTICAST destination. */
 

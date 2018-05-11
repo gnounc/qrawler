@@ -9,9 +9,13 @@ float CSQC_Parse_Damage(float save, float take, vector inflictororg)
 
 
 //Events
-	const float EV_INV_PICKUP = 10;
-	const float EV_INV_REMOVE = 11;
+enum
+{
+	EV_INV_PICKUP = 10,
+	EV_INV_REMOVE,
+	EV_INV_SYNC
 
+};
 
 
 /* Called when the client receives an SVC_CGAMEPACKET. The csqc should read the data or call the error builtin if it does not recognise the message. */

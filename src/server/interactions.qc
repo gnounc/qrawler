@@ -68,8 +68,13 @@ void printInventory(entity player)
 
 
 //Events
-	const float EV_INV_PICKUP = 10;
-	const float EV_INV_REMOVE = 11;
+enum
+{
+	EV_INV_PICKUP = 10,
+	EV_INV_REMOVE,
+	EV_INV_SYNC
+
+};
 
 //asking the client to delete client side copies, and stop tracking this inventory item
 void sendRemoveToClient(entity player, entity item)
